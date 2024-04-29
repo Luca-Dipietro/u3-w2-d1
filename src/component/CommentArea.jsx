@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import CommentsList from "./CommentsList";
-import { Col } from "react-bootstrap";
 // import AddComment from "./AddComment";
 
 class CommentArea extends Component {
@@ -30,10 +29,10 @@ class CommentArea extends Component {
 
   render() {
     return (
-      <Col sm={6} md={3} lg={3} xl={3}>
+      <>
         <CommentsList comments={this.state.comments} />
         {/* <AddComment /> */}
-      </Col>
+      </>
     );
   }
 }
