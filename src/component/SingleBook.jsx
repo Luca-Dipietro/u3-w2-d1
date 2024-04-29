@@ -19,7 +19,7 @@ class SingleBook extends Component {
     const { book } = this.props;
     return (
       <>
-        <Col sm={6} md={3} lg={3} xl={3} className="mb-5">
+        <Col sm={6} md={4} lg={4} xl={3} className="mb-5">
           <Card className={this.state.selected ? "selected-card" : ""}>
             <Card.Img variant="top" src={book.img} className="card-img" onClick={this.handleClick} />
             <Card.Body className="card-body">
