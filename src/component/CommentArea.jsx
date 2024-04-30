@@ -28,10 +28,10 @@ class CommentArea extends Component {
 
   render() {
     return (
-      <div className="text-center">
+      <>
         <AddComment asin={this.props.asin} />
         <CommentsList comments={this.state.comments} />
-      </div>
+      </>
     );
   }
 }

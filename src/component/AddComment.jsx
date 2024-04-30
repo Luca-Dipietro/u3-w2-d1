@@ -10,39 +10,40 @@ class AddComment extends Component {
     },
   };
 
-  sendComment = async (e) => {
+  fetchComment = (e) => {
     e.preventDefault();
-    try {
-      let response = await fetch("https://striveschool-api.herokuapp.com/api/comments", {
-        method: "POST",
-        body: JSON.stringify(this.state.comment),
-        headers: {
-          "Content-type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjE4ZjQwNTdmMzA0NjAwMWFlNTlmOTAiLCJpYXQiOjE3MTQzOTQ0NzQsImV4cCI6MTcxNTYwNDA3NH0.5tdYXsd0yCaS_3hdUhPAK_zcNk_XQelQHVfW8Tj0Ezs",
-        },
+    fetch("https://striveschool-api.herokuapp.com/api/comments", {
+      method: "POST",
+      body: JSON.stringify(this.state.comment),
+      headers: {
+        "Content-type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjE4ZjQwNTdmMzA0NjAwMWFlNTlmOTAiLCJpYXQiOjE3MTQzOTQ0NzQsImV4cCI6MTcxNTYwNDA3NH0.5tdYXsd0yCaS_3hdUhPAK_zcNk_XQelQHVfW8Tj0Ezs",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Recensione inviata!");
+          this.setState({
+            comment: {
+              comment: "",
+              rate: 1,
+              elementId: this.props.asin,
+            },
+          });
+        } else {
+          throw new Error("Qualcosa è andato storto");
+        }
+      })
+      .catch((error) => {
+        alert(error);
       });
-      if (response.ok) {
-        alert("Recensione inviata!");
-        this.setState({
-          comment: {
-            comment: "",
-            rate: 1,
-            elementId: this.props.asin,
-          },
-        });
-      } else {
-        throw new Error("Qualcosa è andato storto");
-      }
-    } catch (error) {
-      alert(error);
-    }
   };
 
   render() {
     return (
-      <div className="my-3">
-        <Form onSubmit={this.sendComment}>
+      <div className="my-3 text-center">
+        <Form onSubmit={this.fetchComment}>
           <Form.Group className="mb-2">
             <Form.Label>Recensione</Form.Label>
             <Form.Control
