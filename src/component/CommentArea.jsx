@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CommentsList from "./CommentsList";
-// import AddComment from "./AddComment";
+import AddComment from "./AddComment";
 
 class CommentArea extends Component {
   state = {
@@ -12,8 +12,7 @@ class CommentArea extends Component {
   }
 
   fetchComments = () => {
-    const { bookId } = this.props;
-    fetch(`https://striveschool-api.herokuapp.com/api/comments/${bookId}`, {
+    fetch("https://striveschool-api.herokuapp.com/api/comments/" + this.props.asin, {
       method: "GET",
       headers: {
         Authorization:
@@ -29,10 +28,10 @@ class CommentArea extends Component {
 
   render() {
     return (
-      <>
+      <div className="text-center">
+        <AddComment asin={this.props.asin} />
         <CommentsList comments={this.state.comments} />
-        {/* <AddComment /> */}
-      </>
+      </div>
     );
   }
 }

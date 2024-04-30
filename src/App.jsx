@@ -5,13 +5,16 @@ import MyFooter from "./component/MyFooter";
 import Welcome from "./component/Welcome";
 import BookList from "./component/BookList";
 import fantasy from "./data/fantasy.json";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
     <div className="App">
       <MyNavBar brandName="EpiBooks" />
-      <Welcome />
-      <BookList books={fantasy} />
+      <Container>
+        <Welcome />
+        <BookList books={fantasy} />
+      </Container>
       <MyFooter />
     </div>
   );
